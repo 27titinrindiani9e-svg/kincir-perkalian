@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>KINCIR PERKALIAN - Media Pembelajaran Matematika SD</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Fredoka & Nunito untuk tipografi bulat, ceria, dan mudah dibaca anak SD -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Fredoka', 'sans-serif'],
+            body: ['Nunito', 'sans-serif'],
+          },
+          colors: {
+            skyLight: '#E0F4FF',
+            skyMid: '#87CEFA',
+            brandBlue: '#0284C7',
+            brandYellow: '#FACC15',
+            brandOrange: '#F97316',
+            brandGreen: '#22C55E',
+            brandDark: '#1E293B',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Pengaturan Dasar & Latar Belakang Langit Karnaval Edukasi */
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(180deg, #60C5F8 0%, #BAE6FD 55%, #DCFCE7 90%, #86EFAC 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: #1E293B;
+    }
+
+    h1, h2, h3, .font-title {
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    /* Animasi Awan Bergerak Halus */
+    @keyframes floatCloudSlow {
+      0% { transform: translateX(-15vw); }
+      100% { transform: translateX(110vw); }
+    }
+    @keyframes floatCloudReverse {
+      0% { transform: translateX(110vw); }
+      100% { transform: translateX(-20vw); }
+    }
+    .cloud-1 { animation: floatCloudSlow 48s linear infinite; }
+    .cloud-2 { animation: floatCloudSlow 65s linear infinite; animation-delay: -20s; }
+    .cloud-3 { animation: floatCloudReverse 56s linear infinite; animation-delay: -12s; }
+
+    /* Animasi Kincir Mini di Beranda */
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .spin-slow {
+      animation: spinSlow 18s linear infinite;
+    }
+
+    /* Animasi Bintang & Maskot Melompat */
+    @keyframes bounceGentle {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .bounce-gentle {
+      animation: bounceGentle 2.4s ease-in-out infinite;
+    }
+
+    @keyframes pulseScale {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .pulse-btn {
+      animation: pulseScale 2s ease-in-out infinite;
+    }
+
+    /* Animasi Getar saat Jawaban Salah */
+    @keyframes shakeBox {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-10px); }
+      40% { transform: translateX(10px); }
+      60% { transform: translateX(-8px); }
+      80% { transform: translateX(8px); }
+    }
+    .shake-anim {
+      animation: shakeBox 0.45s ease-in-out;
+    }
+
+    /* Animasi Pop-In Kartu & Modal */
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.82) translateY(16px); }
+      70% { opacity: 1; transform: scale(1.03) translateY(-2px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .pop-in {
+      animation: popIn 0.38s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Tombol 3D Ramah Anak */
+    .btn-3d {
+      transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.15s ease;
+      position: relative;
+    }
+    .btn-3d:active:not(:disabled) {
+      transform: translateY(5px);
+    }
+    .btn-green {
+      background: linear-gradient(180deg, #4ADE80 0%, #22C55E 100%);
+      box-shadow: 0 6px 0 #15803D, 0 10px 18px rgba(21, 128, 61, 0.25);
+      border: 3px solid #BBF7D0;
+    }
+    .btn-green:active:not(:disabled) {
+      box-shadow: 0 1px 0 #15803D, 0 4px 8px rgba(21, 128, 61, 0.2);
+    }
+
+    .btn-orange {
+      background: linear-gradient(180deg, #FB923C 0%, #F97316 100%);
+      box-shadow: 0 6px 0 #C2410C, 0 10px 18px rgba(194, 65, 12, 0.25);
+      border: 3px solid #FED7AA;
+    }
+    .btn-orange:active:not(:disabled) {
+      box-shadow: 0 1px 0 #C2410C, 0 4px 8px rgba(194, 65, 12, 0.2);
+    }
+
+    .btn-blue {
+      background: linear-gradient(180deg, #38BDF8 0%, #0284C7 100%);
+      box-shadow: 0 6px 0 #0369A1, 0 10px 18px rgba(3, 105, 161, 0.25);
+      border: 3px solid #BAE6FD;
+    }
+    .btn-blue:active:not(:disabled) {
+      box-shadow: 0 1px 0 #0369A1, 0 4px 8px rgba(3, 105, 161, 0.2);
+    }
+
+    .btn-yellow {
+      background: linear-gradient(180deg, #FDE047 0%, #EAB308 100%);
+      box-shadow: 0 5px 0 #A16207, 0 8px 15px rgba(161, 98, 7, 0.2);
+      border: 3px solid #FEF9C3;
+    }
+    .btn-yellow:active:not(:disabled) {
+      box-shadow: 0 1px 0 #A16207;
+    }
+
+    /* Jarum Penunjuk Kincir Bergetar */
+    @keyframes pointerTick {
+      0%, 100% { transform: translateX(-50%) rotate(0deg); }
+      50% { transform: translateX(-50%) rotate(-18deg); }
+    }
+    .pointer-ticking {
+      animation: pointerTick 0.12s ease-in-out infinite;
+    }
+
+    /* Hilangkan panah spinner default input number */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    /* Partikel Hujan Bintang & Konfeti */
+    @keyframes starFall {
+      0% {
+        transform: translateY(-20px) rotate(0deg) scale(0.5);
+        opacity: 1;
+      }
+      80% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(105vh) rotate(540deg) scale(1.2);
+        opacity: 0;
+      }
+    }
+    .falling-star {
+      position: fixed;
+      top: -40px;
+      pointer-events: none;
+      z-index: 60;
+      animation: starFall linear forwards;
+    }
+  </style>
+</head>
+<body class="relative flex flex-col justify-between selection:bg-yellow-200">
+
+  <!-- ==================== LATAR BELAKANG DEKORATIF (AWAN, BINTANG, BUKIT) ==================== -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+    <!-- Matahari Ceria di Sudut Kiri Atas -->
+    <div class="absolute -top-10 -left-10 w-36 h-36 sm:w-48 sm:h-48 rounded-full bg-yellow-300 opacity-80 blur-sm"></div>
+    <svg class="absolute top-3 left-3 w-20 h-20 sm:w-28 sm:h-28 text-yellow-400 spin-slow" viewBox="0 0 100 100" fill="currentColor">
+      <circle cx="50" cy="50" r="24" fill="#FACC15"/>
+      <g stroke="#F59E0B" stroke-width="5" stroke-linecap="round">
+        <line x1="50" y1="6" x2="50" y2="18"/>
+        <line x1="50" y1="82" x2="50" y2="94"/>
+        <line x1="6" y1="50" x2="18" y2="50"/>
+        <line x1="82" y1="50" x2="94" y2="50"/>
+        <line x1="19" y1="19" x2="27" y2="27"/>
+        <line x1="73" y1="73" x2="81" y2="81"/>
+        <line x1="81" y1="19" x2="73" y2="27"/>
+        <line x1="27" y1="73" x2="19" y2="81"/>
+      </g>
+    </svg>
+
+    <!-- Awan Bergerak -->
+    <svg class="cloud-1 absolute top-10 w-32 sm:w-44 text-white/85 drop-shadow-sm" viewBox="0 0 200 80" fill="currentColor">
+      <path d="M45 65h110a25 25 0 0 0 4-49.6A35 35 0 0 0 92 12a28 28 0 0 0-47 22A20 20 0 0 0 45 65z"/>
+    </svg>
+    <svg class="cloud-2 absolute top-28 w-24 sm:w-36 text-white/75" viewBox="0 0 200 80" fill="currentColor">
+      <path d="M45 65h110a25 25 0 0 0 4-49.6A35 35 0 0 0 92 12a28 28 0 0 0-47 22A20 20 0 0 0 45 65z"/>
+    </svg>
+    <svg class="cloud-3 absolute top-16 w-28 sm:w-40 text-white/80" viewBox="0 0 200 80" fill="currentColor">
+      <path d="M45 65h110a25 25 0 0 0 4-49.6A35 35 0 0 0 92 12a28 28 0 0 0-47 22A20 20 0 0 0 45 65z"/>
+    </svg>
+
+    <!-- Bintang-bintang Dekoratif di Langit -->
+    <svg class="absolute top-14 right-14 w-7 h-7 text-yellow-300 opacity-90 bounce-gentle" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+    </svg>
+    <svg class="absolute top-40 left-10 w-5 h-5 text-yellow-200 opacity-85" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+    </svg>
+    <svg class="absolute top-56 right-8 w-6 h-6 text-amber-300 opacity-80" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+    </svg>
+
+    <!-- Bukit Hijau di Bagian Bawah -->
+    <svg class="absolute bottom-0 left-0 w-full h-24 sm:h-32 preserve-3d" viewBox="0 0 1440 160" preserveAspectRatio="none">
+      <path fill="#4ADE80" d="M0,64 C360,140 720,0 1080,80 C1260,120 1380,90 1440,70 L1440,160 L0,160 Z"/>
+      <path fill="#22C55E" d="M0,105 C420,40 860,150 1440,85 L1440,160 L0,160 Z"/>
+    </svg>
+  </div>
+
+  <!-- ==================== TOMBOL SUARA MENGAMBANG (POJOK KANAN ATAS) ==================== -->
+  <div class="fixed top-3 right-3 z-50 flex items-center gap-2">
+    <button id="soundToggleBtn" onclick="toggleSound()" title="Suara Efek"
+      class="bg-white/95 hover:bg-white text-sky-700 border-2 border-sky-300 rounded-full p-2.5 shadow-md transition transform active:scale-95 flex items-center gap-1.5 font-bold text-sm">
+      <span id="soundIcon" class="text-lg leading-none">🔊</span>
+      <span id="soundLabel" class="hidden sm:inline">Suara: Hidup</span>
+    </button>
+  </div>
+
+  <!-- ==================== KONTEN UTAMA APLIKASI (SPA) ==================== -->
+  <main class="relative z-10 flex-1 flex flex-col items-center justify-center w-full max-w-5xl mx-auto px-3 sm:px-6 py-4 sm:py-6">
+
+    <!-- ===================================================================== -->
+    <!-- 1. HALAMAN PEMBUKA (HOME SCREEN)                                      -->
+    <!-- ===================================================================== -->
+    <section id="page-home" class="w-full max-w-2xl flex flex-col items-center text-center pop-in">
+      
+      <!-- Ilustrasi Kincir Mini & Maskot Burung Hantu Pintar -->
+      <div class="relative flex items-center justify-center mb-3 sm:mb-4">
+        <!-- Kincir Warna-Warni -->
+        <div class="relative w-32 h-32 sm:w-40 sm:h-40 flex items-center justify-center">
+          <svg class="w-full h-full spin-slow drop-shadow-lg" viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="92" fill="#FFFFFF" stroke="#0284C7" stroke-width="6"/>
+            <!-- 8 Juring Warna -->
+            <path d="M100,100 L100,12 A88,88 0 0,1 162,38 Z" fill="#38BDF8"/>
+            <path d="M100,100 L162,38 A88,88 0 0,1 188,100 Z" fill="#FACC15"/>
+            <path d="M100,100 L188,100 A88,88 0 0,1 162,162 Z" fill="#4ADE80"/>
+            <path d="M100,100 L162,162 A88,88 0 0,1 100,188 Z" fill="#FB923C"/>
+            <path d="M100,100 L100,188 A88,88 0 0,1 38,162 Z" fill="#38BDF8"/>
+            <path d="M100,100 L38,162 A88,88 0 0,1 12,100 Z" fill="#FACC15"/>
+            <path d="M100,100 L12,100 A88,88 0 0,1 38,38 Z" fill="#4ADE80"/>
+            <path d="M100,100 L38,38 A88,88 0 0,1 100,12 Z" fill="#FB923C"/>
+            <circle cx="100" cy="100" r="24" fill="#FFFFFF" stroke="#F97316" stroke-width="5"/>
+            <text x="100" y="109" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="26" font-weight="700" fill="#F97316">×</text>
+          </svg>
+        </div>
+
+        <!-- Maskot Karakter Kartun (Burung Hantu Ceria) -->
+        <div class="-ml-4 mt-8 w-24 h-24 sm:w-28 sm:h-28 bounce-gentle">
+          <svg viewBox="0 0 140 140" class="w-full h-full drop-shadow-md">
+            <!-- Badan -->
+            <ellipse cx="70" cy="82" rx="42" ry="46" fill="#F97316"/>
+            <ellipse cx="70" cy="90" rx="28" ry="32" fill="#FEF3C7"/>
+            <!-- Telinga/Jambul -->
+            <polygon points="34,42 46,20 56,40" fill="#EA580C"/>
+            <polygon points="106,42 94,20 84,40" fill="#EA580C"/>
+            <!-- Sayap -->
+            <ellipse cx="26" cy="84" rx="11" ry="24" transform="rotate(15 26 84)" fill="#EA580C"/>
+            <ellipse cx="114" cy="84" rx="11" ry="24" transform="rotate(-15 114 84)" fill="#EA580C"/>
+            <!-- Mata Besar -->
+            <circle cx="53" cy="60" r="17" fill="#FFFFFF" stroke="#1E293B" stroke-width="3"/>
+            <circle cx="87" cy="60" r="17" fill="#FFFFFF" stroke="#1E293B" stroke-width="3"/>
+            <circle cx="55" cy="60" r="7" fill="#1E293B"/>
+            <circle cx="85" cy="60" r="7" fill="#1E293B"/>
+            <circle cx="57" cy="57" r="2.5" fill="#FFFFFF"/>
+            <circle cx="87" cy="57" r="2.5" fill="#FFFFFF"/>
+            <!-- Paruh -->
+            <polygon points="63,70 77,70 70,82" fill="#FACC15" stroke="#CA8A04" stroke-width="2"/>
+            <!-- Kaki -->
+            <ellipse cx="55" cy="126" rx="10" ry="5" fill="#FACC15"/>
+            <ellipse cx="85" cy="126" rx="10" ry="5" fill="#FACC15"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Banner Judul Utama -->
+      <div class="bg-white/95 backdrop-blur-sm border-4 border-yellow-400 rounded-3xl px-5 py-6 sm:px-10 sm:py-8 shadow-xl w-full mb-6">
+        <div class="inline-flex items-center gap-2 bg-sky-100 text-sky-700 font-extrabold text-xs sm:text-sm px-4 py-1.5 rounded-full mb-3 border border-sky-300">
+          <span>⭐</span> MATEMATIKA SD KELAS 3 – 4 <span>⭐</span>
+        </div>
+        
+        <h1 class="font-title text-4xl sm:text-6xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-orange-500 to-green-600 drop-shadow-sm mb-3">
+          KINCIR PERKALIAN
+        </h1>
+        
+        <p class="text-lg sm:text-2xl font-extrabold text-slate-700 mb-6">
+          “Ayo Belajar Perkalian Sambil Bermain!”
+        </p>
+
+        <!-- Tombol Aksi Utama -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button onclick="startGameFromHome()"
+            class="btn-3d btn-green pulse-btn w-full sm:w-auto px-10 py-4 rounded-2xl text-white font-title text-2xl sm:text-3xl font-bold tracking-wider flex items-center justify-center gap-3 cursor-pointer">
+            <span>▶</span> MULAI
+          </button>
+
+          <button onclick="goToPage('page-instructions')"
+            class="btn-3d btn-yellow w-full sm:w-auto px-7 py-4 rounded-2xl text-slate-900 font-title text-xl sm:text-2xl font-bold flex items-center justify-center gap-2 cursor-pointer">
+            <span>📖</span> PETUNJUK
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 2. HALAMAN PETUNJUK (INSTRUCTIONS SCREEN)                             -->
+    <!-- ===================================================================== -->
+    <section id="page-instructions" class="hidden w-full max-w-3xl flex-col items-center pop-in">
+      <div class="bg-white/95 backdrop-blur-sm border-4 border-sky-400 rounded-3xl p-5 sm:p-8 shadow-xl w-full">
+        
+        <div class="flex items-center justify-center gap-3 mb-5">
+          <span class="text-3xl sm:text-4xl">🎡</span>
+          <h2 class="font-title text-3xl sm:text-4xl font-bold text-sky-700 text-center">
+            CARA BERMAIN KINCIR PERKALIAN
+          </h2>
+        </div>
+
+        <!-- Langkah-langkah Bermain -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-7">
+          <!-- Langkah 1 -->
+          <div class="bg-sky-50 border-3 border-sky-300 rounded-2xl p-4 flex items-start gap-3.5 shadow-sm">
+            <div class="w-11 h-11 rounded-xl bg-sky-500 text-white font-title text-2xl font-bold flex items-center justify-center shrink-0 shadow">
+              1
+            </div>
+            <div>
+              <h3 class="font-title text-lg sm:text-xl font-bold text-sky-800 mb-1">Tekan Tombol PUTAR</h3>
+              <p class="text-slate-700 font-bold text-sm sm:text-base leading-snug">
+                Tekan tombol <span class="text-orange-600 font-extrabold">PUTAR KINCIR</span> untuk memutar kedua kincir angka warna-warni.
+              </p>
+            </div>
+          </div>
+
+          <!-- Langkah 2 -->
+          <div class="bg-yellow-50 border-3 border-yellow-300 rounded-2xl p-4 flex items-start gap-3.5 shadow-sm">
+            <div class="w-11 h-11 rounded-xl bg-yellow-400 text-slate-900 font-title text-2xl font-bold flex items-center justify-center shrink-0 shadow">
+              2
+            </div>
+            <div>
+              <h3 class="font-title text-lg sm:text-xl font-bold text-amber-800 mb-1">Lihat Angka yang Muncul</h3>
+              <p class="text-slate-700 font-bold text-sm sm:text-base leading-snug">
+                Kincir akan berhenti pada dua angka acak. Kedua angka tersebut membentuk <span class="text-sky-700 font-extrabold">soal perkalian</span>!
+              </p>
+            </div>
+          </div>
+
+          <!-- Langkah 3 -->
+          <div class="bg-orange-50 border-3 border-orange-300 rounded-2xl p-4 flex items-start gap-3.5 shadow-sm">
+            <div class="w-11 h-11 rounded-xl bg-orange-500 text-white font-title text-2xl font-bold flex items-center justify-center shrink-0 shadow">
+              3
+            </div>
+            <div>
+              <h3 class="font-title text-lg sm:text-xl font-bold text-orange-800 mb-1">Hitung & Tulis Jawaban</h3>
+              <p class="text-slate-700 font-bold text-sm sm:text-base leading-snug">
+                Hitung hasil perkaliannya, lalu masukkan jawabanmu pada kotak jawaban yang tersedia.
+              </p>
+            </div>
+          </div>
+
+          <!-- Langkah 4 -->
+          <div class="bg-green-50 border-3 border-green-300 rounded-2xl p-4 flex items-start gap-3.5 shadow-sm">
+            <div class="w-11 h-11 rounded-xl bg-green-500 text-white font-title text-2xl font-bold flex items-center justify-center shrink-0 shadow">
+              4
+            </div>
+            <div>
+              <h3 class="font-title text-lg sm:text-xl font-bold text-green-800 mb-1">Periksa & Raih Bintang</h3>
+              <p class="text-slate-700 font-bold text-sm sm:text-base leading-snug">
+                Tekan <span class="text-green-700 font-extrabold">PERIKSA JAWABAN</span>. Jika benar, kamu mendapat bintang emas!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tombol Navigasi Petunjuk -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+          <button onclick="goToPage('page-home')"
+            class="btn-3d btn-blue w-full sm:w-auto px-6 py-3.5 rounded-2xl text-white font-title text-xl font-bold flex items-center justify-center gap-2 cursor-pointer">
+            <span>⬅</span> BERANDA
+          </button>
+
+          <button onclick="goToPage('page-game')"
+            class="btn-3d btn-green w-full sm:w-auto px-9 py-3.5 rounded-2xl text-white font-title text-2xl font-bold flex items-center justify-center gap-2 cursor-pointer">
+            <span>🎮</span> AYO MAIN!
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 3. HALAMAN PERMAINAN (GAME SCREEN)                                    -->
+    <!-- ===================================================================== -->
+    <section id="page-game" class="hidden w-full max-w-5xl flex-col items-center pop-in">
+      
+      <!-- Header Navigasi Atas Permainan -->
+      <div class="w-full bg-white/95 backdrop-blur-sm border-3 border-sky-300 rounded-2xl px-3 py-2.5 sm:px-5 sm:py-3 shadow-md mb-4 flex flex-wrap items-center justify-between gap-2">
+        <div class="flex items-center gap-2">
+          <button onclick="goToPage('page-home')" title="Kembali ke Beranda"
+            class="bg-sky-100 hover:bg-sky-200 text-sky-800 font-bold px-3 py-2 rounded-xl border-2 border-sky-300 text-sm sm:text-base flex items-center gap-1 transition active:scale-95">
+            <span>🏠</span> <span class="hidden sm:inline">Beranda</span>
+          </button>
+          <button onclick="goToPage('page-instructions')" title="Petunjuk Bermain"
+            class="bg-yellow-100 hover:bg-yellow-200 text-amber-800 font-bold px-3 py-2 rounded-xl border-2 border-yellow-300 text-sm sm:text-base flex items-center gap-1 transition active:scale-95">
+            <span>❓</span> <span class="hidden sm:inline">Petunjuk</span>
+          </button>
+        </div>
+
+        <!-- Indikator Skor Langsung -->
+        <div class="flex items-center gap-2 sm:gap-4">
+          <div class="bg-amber-100 border-2 border-amber-300 px-3 py-1.5 rounded-xl flex items-center gap-1.5">
+            <span class="text-lg sm:text-xl">⭐</span>
+            <span class="font-extrabold text-amber-900 text-sm sm:text-base">Benar: <span id="hud-correct" class="text-lg font-title">0</span></span>
+          </div>
+          <div class="bg-green-100 border-2 border-green-300 px-3 py-1.5 rounded-xl flex items-center gap-1.5">
+            <span class="text-lg sm:text-xl">📝</span>
+            <span class="font-extrabold text-green-900 text-sm sm:text-base">Soal: <span id="hud-total" class="text-lg font-title">0</span></span>
+          </div>
+        </div>
+
+        <button onclick="openScorePage()"
+          class="btn-3d btn-blue px-3.5 py-2 rounded-xl text-white font-title text-sm sm:text-base font-bold flex items-center gap-1.5 cursor-pointer">
+          <span>🏆</span> Lihat Skor
+        </button>
+      </div>
+
+      <!-- Konten Utama Permainan: Grid 2 Kolom di Desktop, Bertumpuk di HP -->
+      <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-stretch">
+        
+        <!-- KOLOM KIRI (7 kolom): AREA KINCIR PERKALIAN INTERAKTIF -->
+        <div class="lg:col-span-7 bg-white/95 backdrop-blur-sm border-4 border-orange-300 rounded-3xl p-4 sm:p-6 shadow-xl flex flex-col items-center justify-between">
+          <div class="text-center mb-2">
+            <span class="inline-block bg-orange-100 text-orange-800 font-extrabold text-xs sm:text-sm px-3.5 py-1 rounded-full border border-orange-300">
+              🎡 PUTAR KINCIR UNTUK MENDAPATKAN SOAL
+            </span>
+          </div>
+
+          <!-- Dua Buah Kincir Roda Angka (1 - 10) -->
+          <div class="w-full flex flex-row items-center justify-center gap-2 sm:gap-5 my-2">
+            
+            <!-- KINCIR 1 (ANGKA PERTAMA) -->
+            <div class="flex flex-col items-center w-1/2 max-w-[235px]">
+              <span class="font-title text-sm sm:text-base font-bold text-sky-700 bg-sky-100 px-3 py-0.5 rounded-full border border-sky-300 mb-2">
+                Angka Pertama
+              </span>
+              <div class="relative w-full aspect-square flex items-center justify-center">
+                <!-- Jarum Penunjuk Atas -->
+                <div id="pointer-1" class="absolute -top-2.5 left-1/2 -translate-x-1/2 z-20 drop-shadow-md">
+                  <svg width="30" height="34" viewBox="0 0 30 34">
+                    <polygon points="15,32 2,4 28,4" fill="#EF4444" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <!-- Canvas Roda Kincir 1 -->
+                <canvas id="wheelCanvas1" width="300" height="300" class="w-full h-full rounded-full drop-shadow-lg"></canvas>
+              </div>
+            </div>
+
+            <!-- Tanda Kali di Tengah -->
+            <div class="font-title text-3xl sm:text-5xl font-bold text-orange-500 drop-shadow-sm select-none pt-6">
+              ×
+            </div>
+
+            <!-- KINCIR 2 (ANGKA KEDUA) -->
+            <div class="flex flex-col items-center w-1/2 max-w-[235px]">
+              <span class="font-title text-sm sm:text-base font-bold text-green-700 bg-green-100 px-3 py-0.5 rounded-full border border-green-300 mb-2">
+                Angka Kedua
+              </span>
+              <div class="relative w-full aspect-square flex items-center justify-center">
+                <!-- Jarum Penunjuk Atas -->
+                <div id="pointer-2" class="absolute -top-2.5 left-1/2 -translate-x-1/2 z-20 drop-shadow-md">
+                  <svg width="30" height="34" viewBox="0 0 30 34">
+                    <polygon points="15,32 2,4 28,4" fill="#EF4444" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <!-- Canvas Roda Kincir 2 -->
+                <canvas id="wheelCanvas2" width="300" height="300" class="w-full h-full rounded-full drop-shadow-lg"></canvas>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Tombol Besar PUTAR KINCIR -->
+          <div class="w-full flex flex-col items-center mt-3">
+            <button id="spinBtn" onclick="spinWheels()"
+              class="btn-3d btn-orange w-full sm:w-auto px-8 sm:px-12 py-3.5 sm:py-4 rounded-2xl text-white font-title text-xl sm:text-2xl font-bold tracking-wide flex items-center justify-center gap-3 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed">
+              <span id="spinBtnIcon" class="text-2xl">🎡</span>
+              <span id="spinBtnText">PUTAR KINCIR</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- KOLOM KANAN (5 kolom): AREA SOAL, MASKOT & JAWABAN -->
+        <div class="lg:col-span-5 bg-white/95 backdrop-blur-sm border-4 border-sky-400 rounded-3xl p-4 sm:p-6 shadow-xl flex flex-col justify-between">
+          
+          <!-- Bagian Atas: Maskot + Balon Kata -->
+          <div class="flex items-center gap-3 bg-sky-50 border-2 border-sky-200 rounded-2xl p-3 mb-3">
+            <!-- SVG Maskot Dinamis -->
+            <div id="gameMascot" class="w-16 h-16 sm:w-20 sm:h-20 shrink-0 transition-transform duration-300">
+              <svg viewBox="0 0 140 140" class="w-full h-full">
+                <ellipse cx="70" cy="82" rx="42" ry="46" fill="#F97316"/>
+                <ellipse cx="70" cy="90" rx="28" ry="32" fill="#FEF3C7"/>
+                <polygon points="34,42 46,20 56,40" fill="#EA580C"/>
+                <polygon points="106,42 94,20 84,40" fill="#EA580C"/>
+                <ellipse cx="26" cy="84" rx="11" ry="24" transform="rotate(15 26 84)" fill="#EA580C"/>
+                <ellipse cx="114" cy="84" rx="11" ry="24" transform="rotate(-15 114 84)" fill="#EA580C"/>
+                <circle cx="53" cy="60" r="17" fill="#FFFFFF" stroke="#1E293B" stroke-width="3"/>
+                <circle cx="87" cy="60" r="17" fill="#FFFFFF" stroke="#1E293B" stroke-width="3"/>
+                <circle cx="55" cy="60" r="7" fill="#1E293B"/>
+                <circle cx="85" cy="60" r="7" fill="#1E293B"/>
+                <circle cx="57" cy="57" r="2.5" fill="#FFFFFF"/>
+                <circle cx="87" cy="57" r="2.5" fill="#FFFFFF"/>
+                <polygon points="63,70 77,70 70,82" fill="#FACC15" stroke="#CA8A04" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <p id="mascotSpeech" class="font-extrabold text-sky-900 text-sm sm:text-base leading-snug">
+                Halo! Tekan tombol <span class="text-orange-600">PUTAR KINCIR</span> untuk memulai soal perkalian!
+              </p>
+            </div>
+          </div>
+
+          <!-- Bagian Tengah: Kartu Soal Perkalian -->
+          <div id="questionArea" class="flex-1 flex flex-col items-center justify-center my-1">
+            <!-- Keadaan Sebelum Diputar -->
+            <div id="waitingState" class="w-full bg-slate-50 border-3 border-dashed border-slate-300 rounded-2xl p-6 text-center">
+              <p class="font-title text-xl sm:text-2xl text-slate-500 mb-1">Siap Bermain?</p>
+              <p class="text-slate-500 font-bold text-sm sm:text-base">Putar kincir di samping untuk memunculkan angka perkalian!</p>
+            </div>
+
+            <!-- Keadaan Soal Aktif -->
+            <div id="activeQuestionState" class="hidden w-full flex-col items-center">
+              <div class="w-full bg-gradient-to-b from-yellow-50 to-amber-100 border-4 border-yellow-400 rounded-2xl p-4 text-center shadow-inner mb-3">
+                <span class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-amber-800 block mb-1">
+                  Berapa Hasil Perkalian Ini?
+                </span>
+                <div class="font-title text-4xl sm:text-5xl font-bold text-slate-800 flex items-center justify-center gap-2 sm:gap-3">
+                  <span id="num1Display" class="bg-sky-500 text-white px-3.5 py-1 rounded-xl shadow">?</span>
+                  <span class="text-orange-500">×</span>
+                  <span id="num2Display" class="bg-green-500 text-white px-3.5 py-1 rounded-xl shadow">?</span>
+                  <span class="text-slate-600">=</span>
+                  <span class="text-orange-600">?</span>
+                </div>
+
+                <!-- Bantuan Visual Konsep Perkalian (Tombol Toggle) -->
+                <div class="mt-2.5">
+                  <button type="button" onclick="toggleVisualHint()"
+                    class="text-xs sm:text-sm font-extrabold text-sky-700 hover:text-sky-900 underline decoration-dotted">
+                    💡 <span id="hintToggleText">Lihat Bantuan Kelompok Bintang</span>
+                  </button>
+                  <div id="visualHintBox" class="hidden mt-2 bg-white/90 rounded-xl p-2 border border-amber-300 text-xs sm:text-sm font-bold text-slate-700">
+                    <!-- Diisi dinamis oleh JS -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Kotak Input Jawaban -->
+              <div id="answerBoxWrapper" class="w-full mb-3">
+                <label for="answerInput" class="sr-only">Masukkan Jawaban</label>
+                <input id="answerInput" type="number" inputmode="numeric" placeholder="Ketik jawaban..."
+                  onkeydown="if(event.key==='Enter') checkAnswer()"
+                  class="w-full text-center font-title text-3xl sm:text-4xl font-bold text-slate-800 bg-white border-4 border-sky-400 focus:border-orange-500 focus:outline-none rounded-2xl py-2.5 px-4 shadow-inner placeholder:text-slate-300 placeholder:text-xl" />
+              </div>
+
+              <!-- Keypad Angka Layar Sentuh Ramah Anak SD (Sangat membantu di HP/Tablet/Layar Sentuh) -->
+              <div class="grid grid-cols-6 gap-1.5 w-full mb-3">
+                <button type="button" onclick="appendDigit(1)" class="bg-slate-100 hover:bg-sky-100 active:bg-sky-200 border-2 border-slate-300 rounded-xl py-2 font-title text-lg sm:text-xl font-bold text-slate-800">1</button>
+                <button type="button" onclick="appendDigit(2)" class="bg-slate-100 hover:bg-sky-100 active:bg-sky-200 border-2 border-slate-300 rounded-xl py-2 font-title text-lg sm:text-xl font-bold text-slate-800">2</button>
+                <button type="button" onclick="appendDigit(3)" class="bg-slate-100 hover:bg-sky-100 active:bg-sky-200 border-2 border-slate-300 rounded-xl py-2 font-title text-lg sm:text-xl font-bold text-slate-800">3</button>
+                <button type="button" onclick="appendDigit(4)" class="bg-slate-100 hover:bg-sky-100 active:bg-sky-200 border-2 border-slate-300 rounded-xl py-2 font-title text-lg sm:text-xl font-bold text-slate-800">4</button>
+                <button type="button" onclick="appendDigit(5)" class="bg-slate-100 hover:bg-sky-100 active:bg-sky-200 border-2 border-slate-300 rounded-xl py-2 font-title text-lg sm:text-xl font-bold text-slate-800">5</button>
+                <button type="button" onclick="backspaceDigit()" class="bg-rose-100 hover:bg-rose-200 active:bg-rose-300 border-2 border-rose-300 rounded-xl py-2 font-title text-base sm:text-lg font-bold text-rose-700">⌫</button>
+                
+                <button type="button" onclick="appendDigit(6)" class="bg-slate-100 hover:bg-sky-100 active:bg-sky-200 border-2 border-slate-300 rounded-xl py-2 font-title text-lg sm:text-xl font-bold text-slate-800">6</button>
+                <button type="button" onclick="appendDigit(7)" class="bg-slate-100 hover:bg-sky-100 active:bg-sky-200 border-2 border-slate-300 rounded-xl py-2 font-title text-lg sm:text-xl font-bold text-slate-800">7</button>
+                <button type="button" onclick="appendDigit(8)" class="bg-slate-100 hover:bg-sky-100 active:bg-sky-200 border-2 border-slate-300 rounded-xl py-2 font-title text-lg sm:text-xl font-bold text-slate-800">8</button>
+                <button type="button" onclick="appendDigit(9)" class="bg-slate-100 hover:bg-sky-100 active:bg-sky-200 border-2 border-slate-300 rounded-xl py-2 font-title text-lg sm:text-xl font-bold text-slate-800">9</button>
+                <button type="button" onclick="appendDigit(0)" class="bg-slate-100 hover:bg-sky-100 active:bg-sky-200 border-2 border-slate-300 rounded-xl py-2 font-title text-lg sm:text-xl font-bold text-slate-800">0</button>
+                <button type="button" onclick="clearInput()" class="bg-amber-100 hover:bg-amber-200 active:bg-amber-300 border-2 border-amber-300 rounded-xl py-2 font-title text-sm sm:text-base font-bold text-amber-800">C</button>
+              </div>
+
+              <!-- Tombol PERIKSA JAWABAN -->
+              <button id="checkBtn" onclick="checkAnswer()"
+                class="btn-3d btn-green w-full py-3.5 rounded-2xl text-white font-title text-xl sm:text-2xl font-bold tracking-wide flex items-center justify-center gap-2 cursor-pointer">
+                <span>✅</span> PERIKSA JAWABAN
+              </button>
+            </div>
+          </div>
+
+          <!-- Area Pesan Umpan Balik Inline (Untuk Jawaban Salah / Peringatan Kosong) -->
+          <div id="inlineFeedback" class="hidden mt-3 rounded-2xl p-3 text-center font-extrabold text-base sm:text-lg border-3 transition-all">
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL UMPAN BALIK JAWABAN BENAR (DENGAN ANIMASI BINTANG)              -->
+    <!-- ===================================================================== -->
+    <div id="correctModal" class="hidden fixed inset-0 z-50 bg-slate-900/55 backdrop-blur-xs flex items-center justify-center p-4">
+      <div class="bg-white border-4 border-yellow-400 rounded-3xl max-w-md w-full p-6 sm:p-8 text-center shadow-2xl pop-in relative overflow-hidden">
+        
+        <!-- Deretan Bintang Berkilau -->
+        <div class="flex items-center justify-center gap-2 text-4xl sm:text-5xl mb-3 animate-bounce">
+          <span>⭐</span>
+          <span class="text-5xl sm:text-6xl">🌟</span>
+          <span>⭐</span>
+        </div>
+
+        <h3 class="font-title text-3xl sm:text-4xl font-bold text-green-600 mb-2">
+          Hebat! Jawaban Kamu Benar!
+        </h3>
+
+        <p id="correctEquationSummary" class="text-lg sm:text-xl font-extrabold text-slate-700 bg-green-50 border-2 border-green-300 rounded-2xl py-2 px-4 mb-5">
+          4 × 5 = 20
+        </p>
+
+        <div class="flex flex-col gap-3">
+          <button onclick="nextQuestionAfterCorrect()"
+            class="btn-3d btn-green w-full py-3.5 rounded-2xl text-white font-title text-xl sm:text-2xl font-bold flex items-center justify-center gap-2 cursor-pointer">
+            <span>🎡</span> PUTAR SOAL BERIKUTNYA
+          </button>
+
+          <button onclick="finishFromModal()"
+            class="btn-3d btn-blue w-full py-3 rounded-2xl text-white font-title text-lg sm:text-xl font-bold flex items-center justify-center gap-2 cursor-pointer">
+            <span>🏆</span> SELESAI & LIHAT SKOR
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 4. HALAMAN SKOR (SCORE & REWARDS SCREEN)                              -->
+    <!-- ===================================================================== -->
+    <section id="page-score" class="hidden w-full max-w-2xl flex-col items-center pop-in">
+      <div class="bg-white/95 backdrop-blur-sm border-4 border-yellow-400 rounded-3xl p-6 sm:p-8 shadow-xl w-full text-center">
+        
+        <span class="inline-block bg-yellow-100 text-amber-800 font-extrabold text-sm px-4 py-1 rounded-full border border-yellow-300 mb-2">
+          🏆 LAPORAN HASIL BELAJAR
+        </span>
+
+        <h2 class="font-title text-3xl sm:text-5xl font-bold text-sky-700 mb-4">
+          HASIL BELAJARMU
+        </h2>
+
+        <!-- Penghargaan Bintang -->
+        <div class="bg-gradient-to-b from-amber-50 to-yellow-100 border-3 border-yellow-300 rounded-2xl p-4 mb-5">
+          <p class="font-extrabold text-amber-900 text-sm sm:text-base mb-2">PENGHARGAAN BINTANG UNTUKMU:</p>
+          <div id="starRewardContainer" class="flex items-center justify-center gap-2 sm:gap-3 text-4xl sm:text-5xl my-2">
+            <!-- Diisi otomatis oleh JavaScript -->
+          </div>
+          <p id="rewardTitle" class="font-title text-xl sm:text-2xl font-bold text-orange-600 mt-1">
+            Bintang Matematika Hebat!
+          </p>
+        </div>
+
+        <!-- Kartu Statistik Skor -->
+        <div class="grid grid-cols-2 gap-4 mb-6">
+          <div class="bg-green-50 border-3 border-green-400 rounded-2xl p-4 flex flex-col items-center">
+            <span class="text-3xl mb-1">✅</span>
+            <span class="text-slate-600 font-extrabold text-sm sm:text-base">Jawaban Benar</span>
+            <span id="scoreCorrectCount" class="font-title text-4xl sm:text-5xl font-bold text-green-600 mt-1">0</span>
+          </div>
+
+          <div class="bg-sky-50 border-3 border-sky-400 rounded-2xl p-4 flex flex-col items-center">
+            <span class="text-3xl mb-1">📝</span>
+            <span class="text-slate-600 font-extrabold text-sm sm:text-base">Soal Dikerjakan</span>
+            <span id="scoreTotalCount" class="font-title text-4xl sm:text-5xl font-bold text-sky-600 mt-1">0</span>
+          </div>
+        </div>
+
+        <!-- Tombol Navigasi Halaman Skor -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+          <button onclick="goToPage('page-game')"
+            class="btn-3d btn-green w-full sm:w-auto px-7 py-3.5 rounded-2xl text-white font-title text-xl font-bold flex items-center justify-center gap-2 cursor-pointer">
+            <span>🎡</span> LANJUT BERMAIN
+          </button>
+
+          <button onclick="goToClosingPage()"
+            class="btn-3d btn-orange w-full sm:w-auto px-7 py-3.5 rounded-2xl text-white font-title text-xl font-bold flex items-center justify-center gap-2 cursor-pointer">
+            <span>🎉</span> SELESAI BELAJAR
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 5. HALAMAN PENUTUP (CLOSING SCREEN)                                   -->
+    <!-- ===================================================================== -->
+    <section id="page-closing" class="hidden w-full max-w-2xl flex-col items-center text-center pop-in">
+      <div class="bg-white/95 backdrop-blur-sm border-4 border-green-400 rounded-3xl p-6 sm:p-10 shadow-xl w-full">
+        
+        <!-- Ilustrasi Perayaan & Maskot -->
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <span class="text-4xl sm:text-5xl animate-bounce">🌟</span>
+          <div class="w-24 h-24 sm:w-28 sm:h-28">
+            <svg viewBox="0 0 140 140" class="w-full h-full drop-shadow-md">
+              <ellipse cx="70" cy="82" rx="42" ry="46" fill="#F97316"/>
+              <ellipse cx="70" cy="90" rx="28" ry="32" fill="#FEF3C7"/>
+              <polygon points="34,42 46,20 56,40" fill="#EA580C"/>
+              <polygon points="106,42 94,20 84,40" fill="#EA580C"/>
+              <!-- Sayap Melambai ke Atas -->
+              <ellipse cx="22" cy="62" rx="11" ry="24" transform="rotate(-35 22 62)" fill="#EA580C"/>
+              <ellipse cx="118" cy="62" rx="11" ry="24" transform="rotate(35 118 62)" fill="#EA580C"/>
+              <!-- Mata Bahagia Melengkung -->
+              <circle cx="53" cy="60" r="17" fill="#FFFFFF" stroke="#1E293B" stroke-width="3"/>
+              <circle cx="87" cy="60" r="17" fill="#FFFFFF" stroke="#1E293B" stroke-width="3"/>
+              <path d="M45 62 Q53 50 61 62" fill="none" stroke="#1E293B" stroke-width="4" stroke-linecap="round"/>
+              <path d="M79 62 Q87 50 95 62" fill="none" stroke="#1E293B" stroke-width="4" stroke-linecap="round"/>
+              <!-- Paruh Tersenyum -->
+              <polygon points="63,70 77,70 70,82" fill="#FACC15" stroke="#CA8A04" stroke-width="2"/>
+            </svg>
+          </div>
+          <span class="text-4xl sm:text-5xl animate-bounce">🎉</span>
+        </div>
+
+        <h2 class="font-title text-3xl sm:text-4xl font-bold text-green-600 leading-tight mb-3">
+          Terima Kasih Telah Belajar Bersama Kincir Perkalian!
+        </h2>
+
+        <p id="closingSummaryText" class="text-base sm:text-xl font-extrabold text-slate-700 bg-sky-50 border-2 border-sky-200 rounded-2xl py-3 px-4 mb-6">
+          Kamu sudah berlatih dengan penuh semangat hari ini!
+        </p>
+
+        <button onclick="resetAndPlayAgain()"
+          class="btn-3d btn-green pulse-btn w-full sm:w-auto px-10 py-4 rounded-2xl text-white font-title text-2xl sm:text-3xl font-bold tracking-wide flex items-center justify-center gap-3 mx-auto cursor-pointer">
+          <span>🔄</span> MAIN LAGI
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer Kecil -->
+  <footer class="relative z-10 text-center py-2 text-xs sm:text-sm font-extrabold text-green-950/80">
+    Media Pembelajaran Matematika Interaktif SD Kelas 3–4 • Kincir Perkalian
+  </footer>
+
+  <!-- ==================== SCRIPT LOGIKA PERMAINAN, KINCIR & AUDIO ==================== -->
+  <script>
+    /* ==========================================================================
+       1. SISTEM EFEK SUARA SINTETIS (WEB AUDIO API - TANPA FILE EKSTERNAL)
+       ========================================================================== */
+    let soundEnabled = true;
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) {
+          audioCtx = new AudioContext();
+        }
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      const icon = document.getElementById('soundIcon');
+      const label = document.getElementById('soundLabel');
+      if (soundEnabled) {
+        icon.textContent = '🔊';
+        label.textContent = 'Suara: Hidup';
+        playClickSound();
+      } else {
+        icon.textContent = '🔇';
+        label.textContent = 'Suara: Mati';
+      }
+    }
+
+    function playClickSound() {
+      if (!soundEnabled) return;
+      try {
+        initAudio();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(520, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(780, audioCtx.currentTime + 0.08);
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.09);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.09);
+      } catch (e) {}
+    }
+
+    function playTickSound() {
+      if (!soundEnabled) return;
+      try {
+        initAudio();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(340, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(160, audioCtx.currentTime + 0.035);
+        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.04);
+      } catch (e) {}
+    }
+
+    function playCorrectSound() {
+      if (!soundEnabled) return;
+      try {
+        initAudio();
+        const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+        notes.forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'triangle';
+          const startTime = audioCtx.currentTime + idx * 0.1;
+          osc.frequency.setValueAtTime(freq, startTime);
+          gain.gain.setValueAtTime(0.18, startTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.35);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(startTime);
+          osc.stop(startTime + 0.36);
+        });
+      } catch (e) {}
+    }
+
+    function playWrongSound() {
+      if (!soundEnabled) return;
+      try {
+        initAudio();
+        const notes = [330, 277.18]; // Nada lembut turun
+        notes.forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          const startTime = audioCtx.currentTime + idx * 0.16;
+          osc.frequency.setValueAtTime(freq, startTime);
+          gain.gain.setValueAtTime(0.15, startTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.25);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(startTime);
+          osc.stop(startTime + 0.26);
+        });
+      } catch (e) {}
+    }
+
+    /* ==========================================================================
+       2. STATUS PERMAINAN & NAVIGASI HALAMAN (SPA)
+       ========================================================================== */
+    const gameState = {
+      num1: null,
+      num2: null,
+      isSpinning: false,
+      questionActive: false,
+      questionSolved: false,
+      wrongAttempts: 0,
+      correctCount: 0,
+      totalAttempted: 0,
+      showHint: false,
+      angle1: 0,
+      angle2: 0
+    };
+
+    const pages = ['page-home', 'page-instructions', 'page-game', 'page-score', 'page-closing'];
+
+    function goToPage(pageId) {
+      playClickSound();
+      pages.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          if (id === pageId) {
+            el.classList.remove('hidden');
+            el.classList.add('flex');
+          } else {
+            el.classList.add('hidden');
+            el.classList.remove('flex');
+          }
+        }
+      });
+
+      if (pageId === 'page-game') {
+        drawWheel('wheelCanvas1', gameState.angle1);
+        drawWheel('wheelCanvas2', gameState.angle2);
+      }
+    }
+
+    function startGameFromHome() {
+      goToPage('page-game');
+    }
+
+    /* ==========================================================================
+       3. MENGGAMBAR & MEMUTAR KINCIR ANGKA INTERAKTIF (CANVAS 1 - 10)
+       ========================================================================== */
+    // Kombinasi warna ceria: Biru, Kuning, Hijau, Oranye
+    const segmentColors = [
+      '#0284C7', // Biru Cerah
+      '#FACC15', // Kuning Hangat
+      '#22C55E', // Hijau Segar
+      '#F97316', // Oranye Ceria
+      '#38BDF8', // Biru Langit
+      '#F59E0B', // Kuning Emas
+      '#16A34A', // Hijau Daun
+      '#FB923C', // Oranye Muda
+      '#0EA5E9', // Biru Laut
+      '#EAB308'  // Kuning Terang
+    ];
+
+    const segmentTextColors = [
+      '#FFFFFF',
+      '#1E293B',
+      '#FFFFFF',
+      '#FFFFFF',
+      '#1E293B',
+      '#1E293B',
+      '#FFFFFF',
+      '#1E293B',
+      '#FFFFFF',
+      '#1E293B'
+    ];
+
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const numSegments = numbers.length;
+    const arcSize = (2 * Math.PI) / numSegments;
+
+    function drawWheel(canvasId, rotationAngle) {
+      const canvas = document.getElementById(canvasId);
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const size = canvas.width;
+      const center = size / 2;
+      const radius = center - 10;
+
+      ctx.clearRect(0, 0, size, size);
+
+      // Bingkai Luar Kincir
+      ctx.beginPath();
+      ctx.arc(center, center, radius + 7, 0, 2 * Math.PI);
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fill();
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = '#F59E0B';
+      ctx.stroke();
+
+      // Gambar 10 Juring Angka
+      // Sudut -Math.PI/2 menempatkan indeks 0 tepat di atas (posisi jarum jam 12)
+      const baseOffset = -Math.PI / 2 - arcSize / 2;
+
+      for (let i = 0; i < numSegments; i++) {
+        const startAngle = baseOffset + rotationAngle + i * arcSize;
+        const endAngle = startAngle + arcSize;
+
+        ctx.beginPath();
+        ctx.moveTo(center, center);
+        ctx.arc(center, center, radius, startAngle, endAngle);
+        ctx.closePath();
+
+        ctx.fillStyle = segmentColors[i % segmentColors.length];
+        ctx.fill();
+
+        ctx.lineWidth = 2.5;
+        ctx.strokeStyle = '#FFFFFF';
+        ctx.stroke();
+
+        // Gambar Angka pada Juring
+        ctx.save();
+        ctx.translate(center, center);
+        ctx.rotate(startAngle + arcSize / 2);
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = segmentTextColors[i % segmentTextColors.length];
+        ctx.font = 'bold 28px Fredoka, sans-serif';
+        ctx.fillText(numbers[i].toString(), radius - 22, 0);
+        ctx.restore();
+      }
+
+      // Pin/Lampu Hias di Tepian Juring
+      for (let i = 0; i < numSegments; i++) {
+        const pinAngle = baseOffset + rotationAngle + i * arcSize;
+        const px = center + Math.cos(pinAngle) * (radius - 2);
+        const py = center + Math.sin(pinAngle) * (radius - 2);
+        ctx.beginPath();
+        ctx.arc(px, py, 4, 0, 2 * Math.PI);
+        ctx.fillStyle = '#FEF08A';
+        ctx.fill();
+        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = '#B45309';
+        ctx.stroke();
+      }
+
+      // Poros Tengah Kincir
+      ctx.beginPath();
+      ctx.arc(center, center, 24, 0, 2 * Math.PI);
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fill();
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = '#0284C7';
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(center, center, 10, 0, 2 * Math.PI);
+      ctx.fillStyle = '#F97316';
+      ctx.fill();
+    }
+
+    function spinWheels() {
+      if (gameState.isSpinning) return;
+      initAudio();
+      playClickSound();
+
+      gameState.isSpinning = true;
+      gameState.questionActive = false;
+      gameState.questionSolved = false;
+      gameState.wrongAttempts = 0;
+
+      // Sembunyikan pesan umpan balik lama & reset input
+      hideInlineFeedback();
+      document.getElementById('answerInput').value = '';
+      document.getElementById('waitingState').classList.remove('hidden');
+      document.getElementById('activeQuestionState').classList.add('hidden');
+      document.getElementById('activeQuestionState').classList.remove('flex');
+
+      // Ubah status tombol & maskot
+      const spinBtn = document.getElementById('spinBtn');
+      const spinBtnText = document.getElementById('spinBtnText');
+      const spinBtnIcon = document.getElementById('spinBtnIcon');
+      spinBtn.disabled = true;
+      spinBtnText.textContent = 'KINCIR BERPUTAR...';
+      spinBtnIcon.classList.add('animate-spin');
+
+      document.getElementById('pointer-1').classList.add('pointer-ticking');
+      document.getElementById('pointer-2').classList.add('pointer-ticking');
+      document.getElementById('mascotSpeech').innerHTML = 'Wuuuussh! Ayo kita lihat angka berapa yang muncul...';
+
+      // Tentukan hasil acak untuk Kincir 1 & Kincir 2 (indeks 0..9 -> angka 1..10)
+      const targetIndex1 = Math.floor(Math.random() * numSegments);
+      const targetIndex2 = Math.floor(Math.random() * numSegments);
+
+      const chosenNum1 = numbers[targetIndex1];
+      const chosenNum2 = numbers[targetIndex2];
+
+      // Hitung sudut tujuan agar indeks terpilih berhenti tepat di jarum atas (sudut 0 relatif terhadap baseOffset)
+      const targetAngleMod1 = (2 * Math.PI - (targetIndex1 * arcSize)) % (2 * Math.PI);
+      const targetAngleMod2 = (2 * Math.PI - (targetIndex2 * arcSize)) % (2 * Math.PI);
+
+      const extraSpins1 = (5 + Math.floor(Math.random() * 3)) * 2 * Math.PI;
+      const extraSpins2 = (6 + Math.floor(Math.random() * 3)) * 2 * Math.PI;
+
+      const startAngle1 = gameState.angle1 % (2 * Math.PI);
+      const startAngle2 = gameState.angle2 % (2 * Math.PI);
+
+      const totalDelta1 = extraSpins1 + ((targetAngleMod1 - startAngle1 + 2 * Math.PI) % (2 * Math.PI));
+      const totalDelta2 = extraSpins2 + ((targetAngleMod2 - startAngle2 + 2 * Math.PI) % (2 * Math.PI));
+
+      const duration1 = 2200; // Kincir 1 berhenti lebih dulu (2.2 detik)
+      const duration2 = 2800; // Kincir 2 berhenti sedikit setelahnya (2.8 detik)
+      const startTime = performance.now();
+      let lastTickStep = -1;
+
+      function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
+      }
+
+      function animateSpin(now) {
+        const elapsed = now - startTime;
+
+        const progress1 = Math.min(elapsed / duration1, 1);
+        const progress2 = Math.min(elapsed / duration2, 1);
+
+        const currentAngle1 = startAngle1 + totalDelta1 * easeOutCubic(progress1);
+        const currentAngle2 = startAngle2 + totalDelta2 * easeOutCubic(progress2);
+
+        gameState.angle1 = currentAngle1;
+        gameState.angle2 = currentAngle2;
+
+        drawWheel('wheelCanvas1', currentAngle1);
+        drawWheel('wheelCanvas2', currentAngle2);
+
+        // Bunyi klik halus saat jarum melewati batas juring
+        const currentStep = Math.floor(currentAngle2 / arcSize);
+        if (currentStep !== lastTickStep && progress2 < 0.98) {
+          playTickSound();
+          lastTickStep = currentStep;
+        }
+
+        if (progress1 >= 1) {
+          document.getElementById('pointer-1').classList.remove('pointer-ticking');
+        }
+
+        if (progress2 < 1) {
+          requestAnimationFrame(animateSpin);
+        } else {
+          // Kedua kincir telah berhenti!
+          document.getElementById('pointer-2').classList.remove('pointer-ticking');
+          onWheelsStopped(chosenNum1, chosenNum2);
+        }
+      }
+
+      requestAnimationFrame(animateSpin);
+    }
+
+    function onWheelsStopped(n1, n2) {
+      gameState.isSpinning = false;
+      gameState.num1 = n1;
+      gameState.num2 = n2;
+      gameState.questionActive = true;
+
+      // Aktifkan kembali tombol putar (bila ingin memutar ulang)
+      const spinBtn = document.getElementById('spinBtn');
+      const spinBtnText = document.getElementById('spinBtnText');
+      const spinBtnIcon = document.getElementById('spinBtnIcon');
+      spinBtn.disabled = false;
+      spinBtnText.textContent = 'PUTAR KINCIR';
+      spinBtnIcon.classList.remove('animate-spin');
+
+      // Tampilkan soal perkalian
+      document.getElementById('waitingState').classList.add('hidden');
+      const activeQ = document.getElementById('activeQuestionState');
+      activeQ.classList.remove('hidden');
+      activeQ.classList.add('flex', 'pop-in');
+
+      document.getElementById('num1Display').textContent = n1;
+      document.getElementById('num2Display').textContent = n2;
+
+      // Perbarui bantuan visual kelompok bintang
+      updateVisualHint(n1, n2);
+
+      // Update ucapan maskot
+      document.getElementById('mascotSpeech').innerHTML =
+        `Kincir berhenti di angka <span class="text-sky-600 font-black">${n1}</span> dan <span class="text-green-600 font-black">${n2}</span>! Berapa hasil <span class="text-orange-600 font-black">${n1} × ${n2}</span>?`;
+
+      // Fokus ke input jika di desktop
+      if (window.innerWidth >= 768) {
+        document.getElementById('answerInput').focus();
+      }
+    }
+
+    /* ==========================================================================
+       4. BANTUAN VISUAL KONSEP PERKALIAN & KEYPAD LAYAR SENTUH
+       ========================================================================== */
+    function updateVisualHint(n1, n2) {
+      const hintBox = document.getElementById('visualHintBox');
+      // Tampilkan penjumlahan berulang & kelompok bintang kecil
+      const repeatedAddition = Array(n1).fill(n2).join(' + ');
+      let groupsHtml = `<div class="mb-1 text-amber-800">${n1} kelompok berisi ${n2} bintang (${repeatedAddition}):</div>`;
+      groupsHtml += `<div class="flex flex-wrap justify-center gap-1.5 max-h-24 overflow-y-auto">`;
+      for (let g = 0; g < n1; g++) {
+        groupsHtml += `<span class="bg-amber-100 border border-amber-300 rounded-lg px-1.5 py-0.5 text-xs tracking-tighter">${'⭐'.repeat(n2)}</span>`;
+      }
+      groupsHtml += `</div>`;
+      hintBox.innerHTML = groupsHtml;
+    }
+
+    function toggleVisualHint() {
+      playClickSound();
+      gameState.showHint = !gameState.showHint;
+      const box = document.getElementById('visualHintBox');
+      const label = document.getElementById('hintToggleText');
+      if (gameState.showHint) {
+        box.classList.remove('hidden');
+        label.textContent = 'Sembunyikan Bantuan';
+      } else {
+        box.classList.add('hidden');
+        label.textContent = 'Lihat Bantuan Kelompok Bintang';
+      }
+    }
+
+    function appendDigit(digit) {
+      playClickSound();
+      const input = document.getElementById('answerInput');
+      if (input.value.length < 3) {
+        input.value += digit.toString();
+      }
+    }
+
+    function backspaceDigit() {
+      playClickSound();
+      const input = document.getElementById('answerInput');
+      input.value = input.value.slice(0, -1);
+    }
+
+    function clearInput() {
+      playClickSound();
+      document.getElementById('answerInput').value = '';
+    }
+
+    /* ==========================================================================
+       5. PEMERIKSAAN JAWABAN & UMPAN BALIK INTERAKTIF
+       ========================================================================== */
+    function checkAnswer() {
+      if (!gameState.questionActive || gameState.isSpinning) return;
+
+      const input = document.getElementById('answerInput');
+      const rawValue = input.value.trim();
+
+      if (rawValue === '') {
+        playWrongSound();
+        showInlineFeedback('⚠️ Tulis dulu jawabanmu pada kotak di atas ya!', 'warning');
+        triggerShake('answerBoxWrapper');
+        return;
+      }
+
+      const userAnswer = parseInt(rawValue, 10);
+      const correctAnswer = gameState.num1 * gameState.num2;
+
+      // Catat soal dikerjakan saat pertama kali menjawab soal ini
+      if (!gameState.questionSolved && gameState.wrongAttempts === 0) {
+        gameState.totalAttempted += 1;
+        updateHUD();
+      }
+
+      if (userAnswer === correctAnswer) {
+        // JAWABAN BENAR!
+        if (!gameState.questionSolved) {
+          gameState.correctCount += 1;
+          gameState.questionSolved = true;
+          updateHUD();
+        }
+
+        playCorrectSound();
+        spawnStarShower();
+        hideInlineFeedback();
+
+        document.getElementById('mascotSpeech').innerHTML =
+          `Horeee! <span class="text-green-600 font-black">Hebat! Jawaban Kamu Benar!</span> 🌟`;
+
+        document.getElementById('correctEquationSummary').textContent =
+          `${gameState.num1} × ${gameState.num2} = ${correctAnswer}`;
+
+        document.getElementById('correctModal').classList.remove('hidden');
+      } else {
+        // JAWABAN SALAH!
+        gameState.wrongAttempts += 1;
+        playWrongSound();
+        triggerShake('answerBoxWrapper');
+
+        // Kosongkan input agar siswa mudah mencoba ulang
+        input.value = '';
+
+        let feedbackMsg = 'Belum Tepat, Ayo Coba Lagi!';
+        if (gameState.wrongAttempts >= 2) {
+          const hintSum = Array(gameState.num1).fill(gameState.num2).join(' + ');
+          feedbackMsg = `Belum Tepat, Ayo Coba Lagi! 💡 Petunjuk: ${gameState.num1} × ${gameState.num2} = ${hintSum}`;
+        }
+
+        showInlineFeedback(`💪 ${feedbackMsg}`, 'error');
+        document.getElementById('mascotSpeech').innerHTML =
+          `<span class="text-orange-600 font-black">Belum Tepat, Ayo Coba Lagi!</span> Kamu pasti bisa!`;
+      }
+    }
+
+    function showInlineFeedback(message, type) {
+      const box = document.getElementById('inlineFeedback');
+      box.classList.remove('hidden', 'bg-rose-100', 'border-rose-400', 'text-rose-800', 'bg-amber-100', 'border-amber-400', 'text-amber-900');
+
+      if (type === 'warning') {
+        box.classList.add('bg-amber-100', 'border-amber-400', 'text-amber-900');
+      } else {
+        box.classList.add('bg-rose-100', 'border-rose-400', 'text-rose-800');
+      }
+
+      box.textContent = message;
+    }
+
+    function hideInlineFeedback() {
+      const box = document.getElementById('inlineFeedback');
+      box.classList.add('hidden');
+    }
+
+    function triggerShake(elementId) {
+      const el = document.getElementById(elementId);
+      el.classList.remove('shake-anim');
+      void el.offsetWidth; // trigger reflow
+      el.classList.add('shake-anim');
+    }
+
+    function updateHUD() {
+      document.getElementById('hud-correct').textContent = gameState.correctCount;
+      document.getElementById('hud-total').textContent = gameState.totalAttempted;
+    }
+
+    /* ==========================================================================
+       6. ANIMASI HUJAN BINTANG SAAT JAWABAN BENAR
+       ========================================================================== */
+    function spawnStarShower() {
+      const emojis = ['⭐', '🌟', '✨', '🎉'];
+      const count = 24;
+
+      for (let i = 0; i < count; i++) {
+        const star = document.createElement('div');
+        star.className = 'falling-star';
+        star.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        star.style.left = Math.random() * 96 + 'vw';
+        star.style.fontSize = (22 + Math.random() * 22) + 'px';
+        star.style.animationDuration = (1.6 + Math.random() * 1.4) + 's';
+        star.style.animationDelay = (Math.random() * 0.4) + 's';
+        document.body.appendChild(star);
+
+        setTimeout(() => {
+          star.remove();
+        }, 3500);
+      }
+    }
+
+    function nextQuestionAfterCorrect() {
+      document.getElementById('correctModal').classList.add('hidden');
+      spinWheels();
+    }
+
+    function finishFromModal() {
+      document.getElementById('correctModal').classList.add('hidden');
+      openScorePage();
+    }
+
+    /* ==========================================================================
+       7. HALAMAN SKOR & PENGHARGAAN BINTANG + HALAMAN PENUTUP
+       ========================================================================== */
+    function openScorePage() {
+      document.getElementById('scoreCorrectCount').textContent = gameState.correctCount;
+      document.getElementById('scoreTotalCount').textContent = gameState.totalAttempted;
+
+      // Hitung jumlah bintang penghargaan (1 sampai 5 bintang)
+      let starsEarned = 1;
+      let titleText = 'Ayo Terus Berlatih, Kamu Hebat!';
+
+      if (gameState.totalAttempted === 0) {
+        starsEarned = 1;
+        titleText = 'Ayo Putar Kincir & Kumpulkan Bintang!';
+      } else {
+        const accuracy = gameState.correctCount / gameState.totalAttempted;
+        if (gameState.correctCount >= 8 && accuracy >= 0.8) {
+          starsEarned = 5;
+          titleText = 'Luar Biasa! Juara Perkalian!';
+        } else if (gameState.correctCount >= 5 && accuracy >= 0.7) {
+          starsEarned = 4;
+          titleText = 'Hebat Sekali! Bintang Matematika!';
+        } else if (gameState.correctCount >= 3) {
+          starsEarned = 3;
+          titleText = 'Bagus! Terus Tingkatkan Belajarmu!';
+        } else if (gameState.correctCount >= 1) {
+          starsEarned = 2;
+          titleText = 'Langkah Awal yang Baik! Ayo Coba Lagi!';
+        }
+      }
+
+      const starContainer = document.getElementById('starRewardContainer');
+      starContainer.innerHTML = '';
+      for (let i = 1; i <= 5; i++) {
+        const span = document.createElement('span');
+        if (i <= starsEarned) {
+          span.textContent = '⭐';
+          span.className = 'drop-shadow-md transform scale-110 transition';
+        } else {
+          span.textContent = '☆';
+          span.className = 'text-amber-300';
+        }
+        starContainer.appendChild(span);
+      }
+
+      document.getElementById('rewardTitle').textContent = titleText;
+
+      if (gameState.correctCount > 0) {
+        playCorrectSound();
+      }
+      goToPage('page-score');
+    }
+
+    function goToClosingPage() {
+      const summary = document.getElementById('closingSummaryText');
+      summary.innerHTML = `Kamu berhasil menjawab <span class="text-green-600 font-black">${gameState.correctCount}</span> soal dengan benar dari <span class="text-sky-700 font-black">${gameState.totalAttempted}</span> soal yang dikerjakan!`;
+      playCorrectSound();
+      spawnStarShower();
+      goToPage('page-closing');
+    }
+
+    function resetAndPlayAgain() {
+      // Atur ulang semua skor & keadaan permainan
+      gameState.num1 = null;
+      gameState.num2 = null;
+      gameState.isSpinning = false;
+      gameState.questionActive = false;
+      gameState.questionSolved = false;
+      gameState.wrongAttempts = 0;
+      gameState.correctCount = 0;
+      gameState.totalAttempted = 0;
+
+      updateHUD();
+      hideInlineFeedback();
+      document.getElementById('answerInput').value = '';
+      document.getElementById('waitingState').classList.remove('hidden');
+      document.getElementById('activeQuestionState').classList.add('hidden');
+      document.getElementById('activeQuestionState').classList.remove('flex');
+      document.getElementById('mascotSpeech').innerHTML =
+        'Halo! Tekan tombol <span class="text-orange-600">PUTAR KINCIR</span> untuk memulai soal perkalian!';
+
+      goToPage('page-home');
+    }
+
+    // Inisialisasi gambar kincir saat halaman selesai dimuat
+    window.addEventListener('load', () => {
+      drawWheel('wheelCanvas1', 0);
+      drawWheel('wheelCanvas2', 0);
+    });
+  </script>
+</body>
+</html>
